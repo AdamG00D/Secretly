@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+
+    <script>
+        if (window.performance && window.performance.getEntriesByType) {
+            const entries = performance.getEntriesByType("navigation");
+            if (entries.length > 0 && entries[0].type === "back_forward") {
+            location.reload();
+            }
+        }
+    </script>
+
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Secretly</title>
+
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+
+    <link rel="stylesheet" href="style.css" />
+
+    <script>
+        const lang = navigator.language.startsWith('ar') ? 'ar' : 'en';
+        document.documentElement.lang = lang;
+        document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
+
+        window.addEventListener('DOMContentLoaded', () => {
+        const h2 = document.querySelector('h2');
+        const textarea = document.querySelector('textarea[name="message"]');
+        const submit = document.querySelector('input[type="submit"]');
+        
+        
+        if (lang === 'ar') {
+            h2.textContent = 'راسلني بسرية';
+            textarea.placeholder = 'اكتب رسالتك هنا...';
+            submit.value = 'إرسال';
+        } else {
+            h2.textContent = 'Message Me Secretly';
+            textarea.placeholder = 'Enter your message...';
+            submit.value = 'Send';
+        }
+
+        
+        textarea.value = '';
+        sessionStorage.removeItem('message'); 
+        });
+
+        function handleSubmit(event) {
+        event.preventDefault();
+
+        const message = document.querySelector('textarea[name="message"]').value;
+        const recaptcha = grecaptcha.getResponse();
+        
+        if (!recaptcha) {
+            alert("Please complete the CAPTCHA.");
+            return;
+        }
+
+        
+        sessionStorage.setItem('message', message);
+
+        
+        window.location.href = 'thanks.html';
+        }
+    </script>
+</head>
+
+<body>
+  <section>
+    <!-- background blocks -->
+    <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> 
+    <div class="signin">
+      <div class="content">
+        <h2>Message Me Secretly</h2>
+
+        <form id="secretForm" class="form" onsubmit="handleSubmit(event)">
+
+          <input type="hidden" name="subject" value="رسالة سرية من الموقع">
+
+          <div class="inputBox">
+            <textarea name="message" rows="6" placeholder="Enter your message..." required></textarea>
+          </div>
+
+          <div class="g-recaptcha" data-sitekey="6Lc4qoUrAAAAAEiv47bceXdwSxK14IzLSx9F_M1z"></div>
+
+          <div class="inputBox">
+            <input type="submit" value="Send" />
+          </div>
+
+        </form>
+
+      </div>
+    </div>
+  </section>
+
+<script>
+  window.addEventListener('DOMContentLoaded', () => {
+    const textarea = document.querySelector('textarea[name="message"]');
+    if (textarea) textarea.value = '';
+
+    if (typeof grecaptcha !== 'undefined') {
+      grecaptcha.reset();
+    }
+
+    sessionStorage.removeItem('message');
+  });
+
+  if (window.performance && window.performance.getEntriesByType) {
+    const entries = performance.getEntriesByType("navigation");
+    if (entries.length > 0 && entries[0].type === "back_forward") {
+      sessionStorage.removeItem('message');
+      location.reload();
+    }
+  }
+</script>
+
+
+
+</body></html>
+

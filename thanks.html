@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Thank You</title>
+  <style>
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      background-color: #000;
+      color: #0f0;
+      font-family: 'Quicksand', sans-serif;
+      text-align: center;
+      padding: 20px;
+    }
+
+    h1 {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+    }
+
+    p {
+      font-size: 1.2rem;
+      color: #ccc;
+    }
+  </style>
+
+</head>
+
+<body>
+
+  <script>
+    const lang = navigator.language.startsWith('ar') ? 'ar' : 'en';
+    if (lang === 'ar') {
+      document.documentElement.lang = 'ar';
+      document.documentElement.dir = 'rtl';
+      document.getElementById('thankMessage').textContent = 'شكراً لك!';
+      document.getElementById('followMessage').textContent = 'تم إرسال رسالتك بنجاح.';
+    }
+  </script>
+
+  <div>
+    <h1 id="thankMessage">Thank you!</h1>
+    <p id="followMessage">Your message has been sent successfully.</p>
+  </div>
+
+<script>
+  const message = sessionStorage.getItem('message');
+
+  if (!message) {
+    window.location.href = 'index.html';
+  } else {
+    const formData = new FormData();
+    formData.append('message', message);
+    formData.append('subject', 'رسالة سرية من موقعك');
+
+    fetch('https://formspree.io/f/mjkovpqg', {
+      method: 'POST',
+      body: formData,
+      headers: {
+        'Accept': 'application/json'
+      }
+    }).then(response => {
+      if (response.ok) {
+        console.log('Message sent!');
+        sessionStorage.removeItem('message');
+      } else {
+        console.log('Something went wrong!');
+      }
+    }).catch(err => {
+      console.log('Connection error');
+    });
+  }
+</script>
+
+
+</body>
+</html>
